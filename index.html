@@ -4,7 +4,13 @@
 
     <h1>My First Heading</h1>
     <p>My first paragraph.</p>
+    
+    <div id="target"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+    <script id="template" type="text/ractive">
+	    <p>{{greeting}}, {{name}}!</p>
+    </script>
   </body>
 </html>
