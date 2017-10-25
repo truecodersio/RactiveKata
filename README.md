@@ -1,2 +1,2 @@
 # RactiveKata
-ractive
+Kata for using Ractive
