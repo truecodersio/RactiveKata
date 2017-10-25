@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <body>
+	<body>
 
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
+    	<h1>My First Heading</h1>
+    	<p>My first paragraph.</p>
     
-    <div id="target"></div>
+    	<div id="target"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-    <script id="template" type="text/ractive">
-	    <p>{{greeting}}, {{name}}!</p>
-    </script>
-  </body>
+    	<script id="template" type="text/ractive">
+    		<p>{{greeting}}, {{name}}!</p>
+    	</script>
+
+		<script>
+			var ractive = new Ractive({
+				target: '#target',
+  				template: '#template',
+				data: { greeting: 'Hello', name: 'world' }
+			});
+		</script>
+	</body>
 </html>
