@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
-
 		<div id="target"></div>
 
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script id="template" type="text/ractive">
+		<h1>Form For: {{person.firstName}}</h1>
+			<form>
+				{{#person}}
+				<input type="text" name ="firstName" value="{{firstName}}" placeholder="Name">
+				<input type="number" name ="age" value="{{age}}" placeholder="Age">
+				{{/person}}
+			</form>
+		
+	</script>
 
 		<script>
 			var ractive = new Ractive({
 				target: '#target',
 				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
+				data: {
+					person: {
+						firstName: '',
+						age: 0
+					}//,
+					//title: "Test Form"
+				}
 			});
 		</script>
 	</body>
