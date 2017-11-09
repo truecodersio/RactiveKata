@@ -18,17 +18,40 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
+		
+
 		<script id="template" type="text/ractive">
 			<h1>{{title}}</h1>
-			<p>{{subtitle}}</p> 			
+			<p>{{subtitle}}</p>
+			
+			{{#each people}}
+			<p>{{name}} {{age}} {{isMinor}}</p>
+			{{/each}}
 		</script>
 	
 
 		<script>
+
+			var people = [
+
+				{name:'CorDarius Witherspoon', age: 27, isMinor: false},
+				{name:'Kara Witherspoon', age: 27, isMinor: false},
+				{name:'Cornelius Hayes', age: 20, isMinor: false},
+				{name:'Jermaine Ervin', age: 28, isMinor: false},
+				{name:'Tanarius Hayes', age: 27, isMinor: false},
+				{name:'Keanna Hayes', age: 17, isMinor: true},
+				{name:'Jarvis Smith', age: 14, isMinor: true},
+
+
+			]
 			var ractive = new Ractive({
 				target: '#target',
 				template: '#template',
-				data: { title: 'My Awesome Website', subtitle: 'Using Ractive To Make Things Awesome' }
+				data: {
+					 title: 'My Awesome Website', 
+					 subtitle: 'Using Ractive To Make Things Awesome',
+					 people: people 
+				}
 			});
 		</script>
 	</body>
