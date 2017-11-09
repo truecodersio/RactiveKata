@@ -3,7 +3,8 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
 </head>
 
 <body>
@@ -21,13 +22,25 @@
 	<script id="template" type="text/ractive">
 		<h1>{{title}}</h1>
 		<p>{{subtitle}}</p>
+
+		{{#each people}}
+		<p>{{name}} {{age}} {{isMinor}}</p>
+		{{/each}}
+
 	</script>
 
 	<script>
+		var people = [
+			{ name: 'Grant Berryman', age: 39, isMinor: false },
+			{ name: 'Bill S. Preston', age: 15, isMinor: true },
+			{ name: 'Roger Pedachter', age: 47, isMinor: false },
+			{ name: 'Ted Turner', age: 16, isMinor: true }
+		];
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { title: 'My Awesome Website', subtitle: 'Using Ractive to make things awesome' }
+			data: { title: 'My Awesome Website', subtitle: 'Using Ractive to make things awesome' },
+			people: people
 		});
 	</script>
 </body>
