@@ -20,9 +20,22 @@
 	<script id="template" type="text/ractive">
 			<h1>{{title}}</h1>
 			<p>{{subtitle}}</p>
+			
+			<table class="table">
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Is Minor</th>
+					</tr>
+
 			{{#each people}}
-			<p>{{name}} {{age}} {{isMinor}}</p>
+			<tr>
+					<td>{{name}}</td>
+					<td>{{age}}</td>
+					<td>{{isMinor}}</td>
+				</tr>
 			{{/each}}
+		</table>
 		</script>
 
 	<script>
