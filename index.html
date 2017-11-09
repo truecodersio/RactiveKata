@@ -15,7 +15,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 	<script id="template" type="text/ractive">
@@ -27,12 +26,15 @@
 				<th>Name</th>
 				<th>Age</th>
 				<th>isMinor</th>
+				<th>Actions</th>
 			</tr>
 			{{#each people}}
 			<tr>
-				<th>{{name}}</th>
-				<th>{{age}}</th>
-				<th>{{isMinor}}</th>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+				<td><a href="#">Edit</a> | <a href="#">Details</a> | <a href="#">Delete</a></td>
+				
 			</tr>
 			{{/each}}
 		</table>
