@@ -3,23 +3,30 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
-<body>
-	<h1>My First Heading</h1>
-	<p>My first paragraph.</p>
 
-	<div id="target"></div>
+<body>
+<div class="container">
+<div class="row">
+<div class="col">
+<div id="target">
+</div>
+</div>
+</div>
+</div>
+ 
 
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 	<script id="template" type="text/ractive">
-		<p>{{greeting}}, {{name}}!</p>
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
 	</script>
 
 	<script>
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { greeting: 'Goodbye', name: 'Earth' }
+			data: { title: 'My Awesome Website', subtitle: 'Using Reactive to make things awesome' }
 		});
 	</script>
 </body>
