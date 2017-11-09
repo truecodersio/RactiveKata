@@ -26,6 +26,8 @@
 						<th>Name</th>
 						<th>Age</th>
 						<th>Is Minor</th>
+						<th>Actions</th>
+						
 					</tr>
 
 			{{#each people}}
@@ -33,6 +35,8 @@
 					<td>{{name}}</td>
 					<td>{{age}}</td>
 					<td>{{isMinor}}</td>
+					<td><a href="#">Edit</a></td> | <td><a href="#">Details</a></td> | <td><a href="#">Delete</a></td>
+
 				</tr>
 			{{/each}}
 		</table>
