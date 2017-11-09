@@ -16,14 +16,28 @@
 		</div>
 	</div>
 
+
+
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 	<script id="template" type="text/ractive">
 		<h1>{{title}}</h1>
 		<p>{{subtitle}}</p>
-		{{#each people}}
-		<p>{{name}} {{age}} {{isMinor}}</p>
-		{{/each}}
+
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Is Minor</th>
+			</tr>
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+			</tr>
+			{{/each}}
+		</table>
 	</script>
 
 	<script>
@@ -33,12 +47,16 @@
 			{ name: 'John Smith', age: 15, isMinor: true },
 			{ name: 'Kane Williamson', age: 33, isMinor: false },
 			{ name: 'David Miller', age: 17, isMinor: true },
-			{ name: 'Steve Buckner', age: 24, isMinor: false },
-		]
+			{ name: 'Steve Buckner', age: 24, isMinor: false }
+		];
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { title: 'My Awsome Website', subtitle: 'Using Ractive to make things more Awsome!',people:people }
+			data: {
+				title: 'My Awsome Website',
+				subtitle: 'Using Ractive to make things more Awsome!',
+				people: people
+			}
 		});
 	</script>
 </body>
