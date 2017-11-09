@@ -32,7 +32,7 @@
 					<td>{{name}}</td>
 					<td>{{age}}</td>
 					<td>{{isMinor}}</td>
-					<td><a href="#">Edit</a>
+					<td><a href="#" on-click="@.edit(this, @index)">Edit</a>
 						</td>
 				</tr>
 				{{/each}}
@@ -45,12 +45,20 @@
 		{name:'Cody Winton', age: 25, isMinor:false},
 		{name:'Jack Johnson', age:31, isMinor:false},
 		{name:'Joe Jackson', age:17, isMinor:true},
-		]
+		];
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
 			data: { title: 'My Awesome Website', subtitle: 'Using Reactive to make things awesome',
-			people:people }
+			people:people },
+			edit:function (person, index){
+				var input = prompt ("Edit Name", person.name);
+
+				if (input) {
+					person.name = input;
+				}
+				ractive.set('people[' + index + ']', person);
+			}
 		});
 	</script>
 </body>
