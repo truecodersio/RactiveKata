@@ -35,7 +35,7 @@
 					<td>{{name}}</td>
 					<td>{{age}}</td>
 					<td>{{isMinor}}</td>
-					<td><a href="#">Edit</a></td> | <td><a href="#">Details</a></td> | <td><a href="#">Delete</a></td>
+					<td><a href="#" on-click="@.edit(this, @index)">Edit</a> | <a href="#" on-click="@.details(this, @index)">Details</a>  | <a href="#"on-click="@.delete(this, @index)">Delete</a></td>
 
 				</tr>
 			{{/each}}
@@ -58,7 +58,32 @@
 				title: 'My First Website ',
 				subtitle: 'Using Ractive to make it great!',
 				people: people
+			},
+			edit: function (person, index) {
+				var input = prompt("Edit Name", person.name);
+
+				if (input) {
+					person.name = input;
+				}
+				ractive.set("people[" + index + "]", person);
+			},
+			details: function (person, index) {
+				var input = prompt("Edit Details", person.age);
+
+				if (input) {
+					person.age = input;
+				}
+				ractive.set("people[" + index + "]", person);
+			},
+			delete: function (person, index) {
+				var input = prompt("Delete", person.name);
+
+				if (input) {
+					person = input;
+				}
+				ractive.set("people[" + index + "]", person);
 			}
+
 		});
 	</script>
 </body>
