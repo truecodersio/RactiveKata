@@ -19,15 +19,27 @@
 	<script id="template" type="text/ractive">
 		<h1>{{title}}</h1>
 		<p>{{subtitle}}</p>
+
+		{{#each people}}
+			<p>{{name}} {{age}} {{isMinor}}</p>
+		{{/each}}
 	</script>
 
 	<script>
+		var people = [
+			{ name: 'Cody Winton', age: 25, isMinor: false },
+			{ name: 'Noah Holtkamp', age: 21, isMinor: false },
+			{ name: 'Hollis Medley', age: 17, isMinor: true },
+			{ name: 'Jessica Harris', age: 31, isMinor: false }
+		];
+
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
 			data: {
 				title: 'My Awesome Website',
-				subtitle: 'Using Ractive to make things awesome'
+				subtitle: 'Using Ractive to make things awesome',
+				people: people
 			}
 		});
 
