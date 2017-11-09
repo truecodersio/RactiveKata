@@ -4,6 +4,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	 crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -18,15 +19,43 @@
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 	<script id="template" type="text/ractive">
-			<h1>{{title}}</h1>
-			<p>{{subtitle}}</p>
-		</script>
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
+
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Is Minor</th>
+			</tr>
+			{{#each people}}
+				<tr>
+					<td>{{name}}</td>
+					<td>{{age}}</td>
+					<td>{{isMinor}}</td>
+				</tr>
+			{{/each}}
+		</table>
+
+	</script>
 
 	<script>
+		var people = [
+			{ name: 'Zach', age: 22, isMinor: false },
+			{ name: 'Joy', age: 21, isMinor: false },
+			{ name: 'Caleb', age: 19, isMinor: false },
+			{ name: 'David', age: 18, isMinor: false },
+			{ name: 'Grace', age: 14, isMinor: true }
+		];
+
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { title: 'My Awesome Website', subtitle: 'Using Ractive to make things awesome' }
+			data: {
+				title: 'My Awesome Website',
+				subtitle: 'Using Ractive to make things awesome',
+				people: people
+			}
 		});
 	</script>
 </body>
