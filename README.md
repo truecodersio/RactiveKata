@@ -12,6 +12,10 @@ Fork and clone this repo
 
 ### Step 2
 
+Add a `head` element and use Bootstrap for your CSS
+
+### Step 3
+
 Create an array of people and add this to your data within Ractive.
 
 ```js
@@ -21,13 +25,21 @@ var people = [
 ];
 ```
 
-### Step 3
-
-Use a Ractive `each` loop to display each person in your people array, along with an edit button
-
 ### Step 4
 
-Use Bootstrap to display this table in a clean, responsive way.
+Use a Ractive `each` loop to display each person in your people array, along with an edit button, in a table element:
+
+```html
+<table>
+    <tr>
+        <th>Name Header</th>
+    </tr>
+    <tr>
+        <!--Use a Ractive #each loop to populate your table data sections-->
+        <td>Actual Name from For Each</td>
+    </tr>
+</table>
+```
 
 ### Step 5
 
