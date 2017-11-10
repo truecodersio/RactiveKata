@@ -1,23 +1,78 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+</head>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+	<script id="template" type="text/ractive">
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>age</th>
+				<th>isMinor</th>
+				<th>Edit</th>
+				<th>Action</th>
+			</tr>				
+		  	{{#each people}}		
+		  	<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this,@index)">Edit</a></td>
+		  	</tr>
+		  	{{/each}}
+	    </table>
+	</script>
+
+	<script>
+
+		var people = [
+			{ name: 'CorDarius Witherspoon', age: 27, isMinor: false },
+			{ name: 'Kara Witherspoon', age: 27, isMinor: false },
+			{ name: 'Cornelius Hayes', age: 20, isMinor: false },
+			{ name: 'Jermaine Ervin', age: 28, isMinor: false },
+			{ name: 'Tanarius Hayes', age: 27, isMinor: false },
+			{ name: 'Keanna Hayes', age: 17, isMinor: true },
+			{ name: 'Jarvis Smith', age: 14, isMinor: true },
+		];
+
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: {
+				title: 'My Awesome Website',
+				subtitle: 'Using Ractive To Make Things Awesome',
+				people: people
+			},
+			edit: function (person, index) {
+
+				var input = prompt("Edit Name", person.name);
+
+				if (input) {
+					person.name = input;
+				}
+
+				ractive.set('people[' + index + ']', person);
+			}
+		});
+
+	</script>
+</body>
+
 </html>
