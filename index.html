@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head><rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"></head>
 
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-		<div id="target"></div>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script id="template" type="text/ractive">
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
+		{{#each people}}
+		<p>{{name}} {{age}} {{isMinor}}</p>
+		{{/each}}
+	</script>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Hello', name: 'Noah' }
-			});
-		</script>
-	</body>
+	<script>
+		var people = [
+			{ name: 'INoah Guy', age: 24, isMinor: false },
+			{ name: 'Phillips Head', age: 345, isMinor: false },
+			{ name: 'Join DaClub', age: 15, isMinor: true },
+			{ name: 'South West', age: 98, isMinor: false },
+			{ name: 'North East', age: 3, isMinor: true },
+			{ name: 'Jane Doe', age: 50, isMinor: false },
+		]
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: { title: 'My Awsome Website', subtitle: 'Using Ractive to make things more Awsome!', people: people }
+		});
+	</script>
+</body>
+
 </html>
