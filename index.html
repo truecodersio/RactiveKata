@@ -21,6 +21,7 @@
 			<h1>{{title}}</h1>
 			<p>{{subtitle}}</p>
 			
+			<a href="#" on-click="@.add()">Add</a>
 			<table class="table">
 					<tr>
 						<th>Name</th>
@@ -35,7 +36,7 @@
 					<td>{{name}}</td>
 					<td>{{age}}</td>
 					<td>{{isMinor}}</td>
-					<td><a href="#" on-click="@.edit(this, @index)">Edit</a> | <a href="#" on-click="@.details(this, @index)">Details</a>  | <a href="#"on-click="@.delete(this, @index)">Delete</a></td>
+					<td><a href="#" on-click="@.edit(this, @index)">Edit</a> | <a href="#" on-click="@.details(this, @index)">Details</a>  | <a href="#"on-click="@.delete(@index)">Delete</a></td>
 
 				</tr>
 			{{/each}}
@@ -75,13 +76,16 @@
 				}
 				ractive.set("people[" + index + "]", person);
 			},
-			delete: function (person, index) {
-				var input = prompt("Delete", person.name);
+			delete: function( index ) {
+				ractive.splice('people', index, 1);
+		
+			},
+			add: function () {
+                var name = prompt("Add Name");
+                var age = parseInt(prompt("Add Age"));
+				var isMinor = age < 21;
 
-				if (input) {
-					person = input;
-				}
-				ractive.set("people[" + index + "]", person);
+                ractive.push('people', { name: name , age: age, isMinor: isMinor })
 			}
 
 		});
