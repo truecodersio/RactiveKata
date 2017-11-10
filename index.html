@@ -20,7 +20,7 @@
 		<h1>{{title}}</h1>
 		<p>{{subtitle}}</p>
 		<br>
-
+		<p><a href="#" on-click="@.add(this)">Add New</p>
 		<table class="table">
 			<tr>
 				<th>Name</th>
@@ -33,7 +33,7 @@
 				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{isMinor}}</td>
-				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a> | <a href="#" on-click="@.delete(@index)">Delete</a></td>
 			</tr>
 			{{/each}}
 		</table>
@@ -71,13 +71,33 @@
 				subtitle: "Using ractive to make things Awesome",
 				people: people
 			},
-			edit: function (person, index) {
-				var input = prompt("Edit Name", person.name);
-				if (input) {
-					person.name = input;
-				};
+			edit: function(person, index) {
+				var name = prompt("Edit Name", person.name);
+				var age = prompt("Edit Age", person.age);
+				var isminor = prompt("Edit Is Minor", person.isMinor);
+				if (name && age && isminor) {
+					person.name = name;
+					person.age = age;
+					person.isMinor = isminor;
+				}
 				ractive.set('people[' + index + ']', person);
-			}
+			},
+			add: function (person) {
+				var name = prompt("Name", person.name);
+				var age = prompt("Age", person.age);
+				var isminor = prompt("Is Minor", person.isMinor);
+				if (name && age && isminor) {
+				person.name = name;
+				person.age = age;
+				person.isMinor = isminor;
+				}
+				
+				ractive.push('people', person);
+			},
+			delete:
+				function(index) {
+					ractive.splice('people', index, 1);
+				}
 		});
 	</script>
 </body>
