@@ -35,7 +35,7 @@
 			<tr>
 					<td>{{name}}</td>
 					<td>{{age}}</td>
-					<td>{{isMinor}}</td>
+					<td>{{age < 21}}</td>
 					<td><a href="#" on-click="@.edit(this, @index)">Edit</a> | <a href="#" on-click="@.details(this, @index)">Details</a>  | <a href="#"on-click="@.delete(@index)">Delete</a></td>
 
 				</tr>
@@ -76,16 +76,15 @@
 				}
 				ractive.set("people[" + index + "]", person);
 			},
-			delete: function( index ) {
+			delete: function (index) {
 				ractive.splice('people', index, 1);
-		
+
 			},
 			add: function () {
-                var name = prompt("Add Name");
-                var age = parseInt(prompt("Add Age"));
-				var isMinor = age < 21;
+				var name = prompt("Add Name");
+				var age = parseInt(prompt("Add Age"));
 
-                ractive.push('people', { name: name , age: age, isMinor: isMinor })
+				ractive.push('people', { name: name, age: age })
 			}
 
 		});
