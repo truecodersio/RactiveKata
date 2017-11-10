@@ -15,33 +15,49 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<script id="template" type="text/ractive">
-			<h1>{{title}}</h1>
-			<p>{{subtitle}}</p>
 
-			{{#each people}}
-			<p>{{name}} {{age}} {{isMinor}}</p>
-			{{/each}}
-		</script>
+<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<script>
-		var people = [
-			{ name: 'Cody Winton', age: 57, isMinor: false },
-			{ name: 'Thomas Winton', age: 25, isMinor: false },
-			{ name: 'Starlito Winton', age: 8, isMinor: true },
-		];
-		var ractive = new Ractive({
-			target: '#target',
-			template: '#template',
-			data: {
-				title: 'My Awesome Website',
-				subtitle: 'Using Ractive to make things awesome',
-				people: people
-			}
-		});
-	</script>
+<script id="template" type="text/ractive">
+				<h1>{{title}}</h1>
+				<p>{{subtitle}}</p>
+	
+				<table class="table">
+						<tr>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Is Minor</th>
+							<th>Edit</th>
+							<th>Actions</th>
+						</tr>
+						{{#each people}}
+						<tr>
+								<td>{{name}}</td>
+								<td>{{age}}</td>
+								<td>{{isMinor}}</td>
+								<td><a href="#">Edit</a> | <a href="#">Details</a> | <a href="#">Delete</a></td>
+							</tr>
+						{{/each}}
+					</table>
+			</script>
+
+<script>
+	var people = [
+		{ name: 'Cody Winton', age: 57, isMinor: false },
+		{ name: 'Thomas Winton', age: 25, isMinor: false },
+		{ name: 'Starlito Winton', age: 8, isMinor: true },
+	];
+	var ractive = new Ractive({
+		target: '#target',
+		template: '#template',
+		data: {
+			title: 'My Awesome Website',
+			subtitle: 'Using Ractive to make things awesome',
+			people: people
+		}
+	});
+</script>
 </body>
 
 </html>
