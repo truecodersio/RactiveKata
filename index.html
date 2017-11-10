@@ -1,27 +1,63 @@
 <!DOCTYPE html>
 <html>
-	<head>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	</head>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+</head>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
 
-		<script id="template" type="text/ractive">
-			<h1>{{title}}</h1>
-			<h5>{{subtitle}}.</h5>
-		</script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+	<script id="template" type="text/ractive">
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
+
+ 		<table class="table">
+			<tr>
+				<th>name</th>
+				<th>age</th>
+				<th>isMinor</th>
+				<th>Edit</th>
+			</tr>
+				<td>a</td>
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+				<td><a href="#">Edit</a></td>	
+				
+			</tr>
+			{{/each}}
 			
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { title: 'Austins radtastic website', subtitle: 'Things to make website so radtastic' }
-			});
-		</script>
-	</body>
+		</table>
+	</script>
+
+	<script>
+		var people = [
+			{ name: 'Austin Redmayne', age: 24, isMinor: false },
+			{ name: 'Kelly Kapore', age: 32, isMinor: false },
+			{ name: 'James Bond', age: 45, isMinor: false },
+			{ name: 'Average Joe Sophmore in highschool', age: 15, isMinor: true },
+			{ name: 'Time Itself', age: 8, isMinor: true / false }
+		];
+
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: { title: 'Austins radtastic website', subtitle: 'Things to make website so radtastic', people: people }
+		});
+
+	</script>
+</body>
+
 </html>
