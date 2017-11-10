@@ -21,19 +21,24 @@
 			 <h1>{{title}}</h1>
 			 <p>{{subtitle}}</p>
 
+			 <a href="#" on-click="@.add()">Create New</a>
+
 			 <table class="table">
 				<tr>
 					<th>Name</th>
 					<th>Age</th>
 					<th>Is Minor</th>
-					<th>Action</th>
+					<th>Actions</th>
 				</tr>
 				{{#each people}}
 				<tr>
 					<td>{{name}}</td>
 					<td>{{age}}</td>
 					<td>{{isMinor}}</td>
-					<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
+					<td>
+						<a href="#" on-click="@.edit(this, @index)">Edit |</a>
+						<a href="#" on-click="@.delete(@index)">Delete</a>						
+					</td>
 				</tr>
 				{{/each}}					
 				</table>
@@ -58,17 +63,29 @@
 				title: 'My Amazing Website',
 				subtitle: 'Using Ractive to make things amazing',
 				people: people
+			},	
+			add: function () {
+				var name = prompt("Name:");
+				var age = parseInt(prompt("Age:"));
+				var isMinor = age < 21;
+	
+                ractive.push('people', { name: name, age: age, isMinor: isMinor })                
 			},
 			edit: function (person, index) {
 				
 				var input = prompt("Edit Name", person.name);
+				var input2 = prompt("Edit Age", person.age);
 
 				if (input) {
 					person.name = input;
+					person.age = input2;
 				}
 
 				ractive.set('people[' + index + ']', person);
-			}
+			},
+			delete: function(index) {
+				ractive.splice('people', index, 1);
+			},
 		});
 	</script>
 </body>
