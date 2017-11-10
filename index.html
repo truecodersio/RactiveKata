@@ -26,15 +26,14 @@
 				<th>name</th>
 				<th>age</th>
 				<th>isMinor</th>
-				<th>Edit</th>
+				<th>Action</th>
 			</tr>
-				<td>a</td>
 			{{#each people}}
 			<tr>
 				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{isMinor}}</td>
-				<td><a href="#">Edit</a></td>	
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
 				
 			</tr>
 			{{/each}}
@@ -54,8 +53,18 @@
 		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { title: 'Austins radtastic website', subtitle: 'Things to make website so radtastic', people: people }
+			data: { title: 'Austins radtastic website', subtitle: 'Things to make website so radtastic', people: people },
+
+			edit: function (person ,index) {
+			var input = prompt("Edit name", person.name);
+			if (input)
+			{person.name=input;}
+
+			ractive.set('people[' + index + ']', person);
+		}
 		});
+
+		
 
 	</script>
 </body>
