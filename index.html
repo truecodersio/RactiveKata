@@ -12,14 +12,15 @@
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
+			<h1>{{title}}</h1>
+			<h5>{{subtitle}}.</h5>
 		</script>
-
+			
 		<script>
 			var ractive = new Ractive({
 				target: '#target',
 				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
+				data: { title: 'Austins radtastic website', subtitle: 'Things to make website so radtastic' }
 			});
 		</script>
 	</body>
