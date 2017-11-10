@@ -1,58 +1,76 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
 </head>
 
-	<body>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div id="target"></div>
-				</div>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="target"></div>
 			</div>
 		</div>
-		
-		
+	</div>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+	<td><a href="#">Edit</a></td>td>
 
-		
 
-		<script id="template" type="text/ractive">
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+
+
+	<script id="template" type="text/ractive">
 			<h1>{{title}}</h1>
 			<p>{{subtitle}}</p>
-			
-			{{#each people}}
-			<p>{{name}} {{age}} {{isMinor}}</p>
-			{{/each}}
+
+			<table class="table">
+				<tr>
+					<th>Name</th>
+					<th>age</th>
+					<th>isMinor</th>
+					<th>Edit</th>
+				</tr>
+					
+							
+			  {{#each people}}		
+			  <tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+			  </tr>
+			  {{/each}}
+		    </table>
 		</script>
-	
-
-		<script>
-
-			var people = [
-
-				{name:'CorDarius Witherspoon', age: 27, isMinor: false},
-				{name:'Kara Witherspoon', age: 27, isMinor: false},
-				{name:'Cornelius Hayes', age: 20, isMinor: false},
-				{name:'Jermaine Ervin', age: 28, isMinor: false},
-				{name:'Tanarius Hayes', age: 27, isMinor: false},
-				{name:'Keanna Hayes', age: 17, isMinor: true},
-				{name:'Jarvis Smith', age: 14, isMinor: true},
 
 
-			]
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: {
-					 title: 'My Awesome Website', 
-					 subtitle: 'Using Ractive To Make Things Awesome',
-					 people: people 
-				}
-			});
-		</script>
-	</body>
+	<script>
+
+		var people = [
+
+			{ name: 'CorDarius Witherspoon', age: 27, isMinor: false },
+			{ name: 'Kara Witherspoon', age: 27, isMinor: false },
+			{ name: 'Cornelius Hayes', age: 20, isMinor: false },
+			{ name: 'Jermaine Ervin', age: 28, isMinor: false },
+			{ name: 'Tanarius Hayes', age: 27, isMinor: false },
+			{ name: 'Keanna Hayes', age: 17, isMinor: true },
+			{ name: 'Jarvis Smith', age: 14, isMinor: true },
+
+
+		];
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: {
+				title: 'My Awesome Website',
+				subtitle: 'Using Ractive To Make Things Awesome',
+				people: people
+			}
+		});
+	</script>
+</body>
+
 </html>
