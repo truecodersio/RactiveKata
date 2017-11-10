@@ -34,7 +34,7 @@
 				<tr>
 					<td>{{name}}</td>
 					<td>{{age}}</td>
-					<td>{{isMinor}}</td>
+					<td>{{age < 21}}</td>
 					<td>
 						<a href="#" on-click="@.edit(this, @index)">Edit |</a>
 						<a href="#" on-click="@.delete(@index)">Delete</a>						
@@ -67,9 +67,9 @@
 			add: function () {
 				var name = prompt("Name:");
 				var age = parseInt(prompt("Age:"));
-				var isMinor = age < 21;
+				
 	
-                ractive.push('people', { name: name, age: age, isMinor: isMinor })                
+                ractive.push('people', { name: name, age: age })                
 			},
 			edit: function (person, index) {
 				
