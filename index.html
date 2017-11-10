@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html>
+	<head>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	</head>
 	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+		<div class= "container">
+		  <div class="row">
+			  <div class="col">
+				<div id="target"></div>
+			  </div>
+		  </div>		   
+		</div>
 
-		<div id="target"></div>
 
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
+			<h1>{{title}}</h1>
+			<h5>{{subtitle}}</h5>
+
+			<table class="table">
+				<tr>
+				  <th>Name</th>
+				  <th>Age</th>
+				  <th>Is Minor</th>
+				</tr>
+				{{#each people}}
+				  <tr>
+					<td>{{name}}</td>
+					<td>{{age}}</td>
+					<td>{{isMinor}}</td>
+				  </tr>
+			  	{{/each}}
+			</table>
 		</script>
 
 		<script>
+			var people = [
+				{name: 'Connor Davis', age: 19, isMinor: false},
+				{name: 'Hollis Medly', age: 17, isMinor: true},
+				{name: 'Davis Anderton', age: 15, isMinor: true},
+				{name: 'Chris Richardson', age: 20, isMinor: false}
+			];
+			
 			var ractive = new Ractive({
 				target: '#target',
 				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
+				data: { 
+					title: 'Weirdness', 
+					subtitle: 'Planet of bacchanalia and other stupid hamartias.',
+					people: people
+				}
 			});
 		</script>
 	</body>
