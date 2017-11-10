@@ -1,89 +1,26 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-	 crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
-<body>
-	<div class="container">
 		<div id="target"></div>
-		<div class="row">
-			<div class="col">
-				<div id="target"></div>
-			</div>
-		</div>
-	</div>
-	<table class="table">
-		<tr>
-			<th>Name</th>
-			<th>Age</th>
-			<th>Is Minor</th>
-			<th>Edit</th>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<script id="template" type="text/ractive">
-			<h1>{{title}}</h1>
-			<h5>{{subtitle}}</h5>
+		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+		<script id="template" type="text/ractive">
+			<h1>{{heading}}</h1>
+			<p>My first paragraph.</p>
 			<button on-click="@global.alert( 'Activating!' ),
 			console.log( 'alert was acknowledged' )">{{greeting}}, {{name}}!</button>
-
-			<table class="table">
-					<tr>
-						<th>Name</th>
-						<th>Age</th>
-						<th>Is Minor</th>
-						<th>Edit</th>
-					</tr>
-					{{#each people}}
-					<tr>
-							<td>{{name}}</td>
-							<td>{{age}}</td>
-							<td>{{isMinor}}</td>
-						</tr>
-
-					{{/each}}
-
-				</table>
-
-
 		</script>
-	<script>
-		var people = [
-			{ name: 'Micah Weech', age: 32, isMinor: false },
-			{ name: 'Sam Jeudin', age: 33, isMinor: false },
-			{ name: 'Rasad Burden', age: 29, isMinor: false },
-			{ name: 'Micahael Lewis', age: 35, isMinor: false },
-			{ name: 'Lola Moore', age: 35, isMinor: false },
-			{ name: 'Yvens Melidor', age: 30, isMinor: false },
-			{ name: 'Michael Mickens', age: 35, isMinor: false },
-			{ name: 'Debliar Snell', age: 36, isMinor: false },
 
-		];
-	</script>
-
-	<script>
-		var ractive = new Ractive({
-			target: '#target',
-			template: '#template',
-			data: {
-				title: 'Infield Pastor',
-				subtitle: 'Using this to submit data to the conference.',
-				heading: "What is this!!!",
-				people: people
-			}
-		});
-	</script>
-</body>
-
+		<script>
+			var ractive = new Ractive({
+				target: '#target',
+				template: '#template',
+				data: { greeting: 'Goodbye', name: 'Earth', heading: "What is this!!!" }
+			});
+		</script>
+	</body>
 </html>
