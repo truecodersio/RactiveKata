@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+</head>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+	<script id="template" type="text/ractive">
+		<h1>{{title}}</h1>
+		<p>{{subtitle}}</p>
+
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Is Minor</th>
+				<th>Action</th>
+			</tr>
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
+			</tr>
+			{{/each}}
+		</table>
+
+	</script>
+
+	<script>
+		var people = [
+			{ name: 'Grant Berryman', age: 39, isMinor: false },
+			{ name: 'Bill S. Preston', age: 15, isMinor: true },
+			{ name: 'Roger Pedachter', age: 47, isMinor: false },
+			{ name: 'Ted Turner', age: 16, isMinor: true }
+		];
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: { title: 'My Awesome Website', subtitle: 'Using Ractive to make things awesome',
+			people: people},
+			edit: function (person, index) {
+				var input = prompt("Edit Name", person.name);
+
+				if (input) {
+					person.name = input;
+				};
+				ractive.set('people[' + index + ']', person);
+			}
+		});
+	</script>
+</body>
+
 </html>
