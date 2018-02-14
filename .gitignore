@@ -1,11 +1,7 @@
-#   ┌─┐┬┌┬┐┬┌─┐┌┐┌┌─┐┬─┐┌─┐
-#   │ ┬│ │ ││ ┬││││ │├┬┘├┤
-#  o└─┘┴ ┴ ┴└─┘┘└┘└─┘┴└─└─┘
-
 # Mac files
 .DS_store
 
-# dependencies
+# Dependencies
 node_modules/**
 bower_components/**
 
@@ -13,24 +9,13 @@ bower_components/**
 build/**
 dist/**
 
-# Local files
-.env
-.variables
-.ignore/**
-ignore/**
-
 # Logs
-**/*.map
 npm-debug.log
 npm-debug.log.*
-yarn-error.log
 
 # Editor Files
-.idea
+.vs
 .vscode
+.idea
 **/tags
-
-# Misc.
-!.gitkeep
-
 
