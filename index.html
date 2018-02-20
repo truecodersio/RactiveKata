@@ -11,62 +11,40 @@
 </head>
 
 <body>
-	<article class="container-fluid text-center">
+	<div class="container-fluid text-center">
 		<h1 class="text-uppercase">Welcome To World Of Beers</h1>
 		<p>He was a wise man who invented beer. </p>
 
 		<div id="target"></div>
-	</artcle>
+	</div>
 
-		<script id="template" type="text/ractive">
-			<section  >
-				<table>
-					<tr>
-						<th> Name </th>
-						<th> Age </th>
-						<th> isMinor </th>
-					</tr>
+	<script id="template" type="text/ractive">
+			<table class="table">
+				<tr>
+					<th> Name </th>
+					<th> Age </th>
+					<th> isMinor </th>
+					<th> Can Edit </th>
+				</tr>
 
-					{{#each peoples}}
-					<tr>
-						<td> {{name}}</td>
-						<td> {{age}}</td>
-						<td> {{isMinor}}</td>
-					</tr>
-					{{/each}}
-				</table>
-			</section>
-		</script>
+				{{#each people}}
+				<tr>
+					<td> {{name}}</td>
+					<td> {{age}}</td>
+					<td> {{isMinor}}</td>
+					<td>
+						<button type="button" onclick="{{person}} {{index}}">Edit me!</button>
+					</td>
+				</tr>
+				{{/each}}
+			</table>
+
+	</script>
 
 
-		<script>
-			var people = [{
-					name: 'Subash',
-					age: 29,
-					isMinor: false
-				},
-				{
-					name: 'Sunil',
-					age: 22,
-					isMinor: false
-				},
-				{
-					name: 'Nita',
-					age: 19,
-					isMinor: true
-				}
-			];
 
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				//data: { greeting: 'Goodbye', name: 'Earth' },
-				data: {
-					peoples: people
-				}
 
-			});
-		</script>
+	<script src="ractive.js"></script>
 
 </body>
 
