@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	  		crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	  			crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+					integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	  			crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+					integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+					crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+</head>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<body>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<div id="target"></div>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+	<script id="template" type="text/template">
+		<h1 class="display-1 text-center"> My First Heading </h1>
+		<p class="lead text-center"> This is my awesome paragraph. </p>
+		<p class="lead text-center">{{intro}}</p>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Is a Minor</th>
+					<th></th>
+				</tr>
+			</thead>
+			{{#people}}
+			<tr>
+				<td>{{this.name}}</td>
+				<td>{{this.age}}</td>
+				<td>{{this.isMinor}}</td>
+				<td>
+					<button class="btn btn-outline-primary"
+									on-click="@this.set('name', 'Lorem Ipsum')">Edit
+					</button>
+				</td>
+			</tr>
+			{{/people}}
+		</table>
+	</script>
+
+	<script src="./script.js"></script>
+
+</body>
+
 </html>
