@@ -6,64 +6,67 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
 </head>
 
 <body>
-	<h1>My First Heading</h1>
-	<p>My first paragraph.</p>
+	<article class="container-fluid text-center">
+		<h1 class="text-uppercase">Welcome To World Of Beers</h1>
+		<p>He was a wise man who invented beer. </p>
 
-	<div id="target"></div>
+		<div id="target"></div>
+	</artcle>
 
-	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+		<script id="template" type="text/ractive">
+			<section  >
+				<table>
+					<tr>
+						<th> Name </th>
+						<th> Age </th>
+						<th> isMinor </th>
+					</tr>
 
-	<script id="template" type="text/ractive">
-		<!-- <p>{{greeting}}, {{name}}!</p> -->
+					{{#each peoples}}
+					<tr>
+						<td> {{name}}</td>
+						<td> {{age}}</td>
+						<td> {{isMinor}}</td>
+					</tr>
+					{{/each}}
+				</table>
+			</section>
+		</script>
 
-		<table>
-			<tr>
-				<th> Name </th>
-				<th> Age </th>
-				<th> isMinor </th>
-			</tr>
 
-			{{#each peoples}}
-			<tr>
-				<td> {{name}}</td>
-				<td> {{age}}</td>
-				<td> {{isMinor}}</td>
-			</tr>
-			{{/each}}
-		</table>
-	</script>
+		<script>
+			var people = [{
+					name: 'Subash',
+					age: 29,
+					isMinor: false
+				},
+				{
+					name: 'Sunil',
+					age: 22,
+					isMinor: false
+				},
+				{
+					name: 'Nita',
+					age: 19,
+					isMinor: true
+				}
+			];
 
-	<script>
-	var people = [{
-			name: 'Subash',
-			age: 29,
-			isMinor: false
-		},
-		{
-			name: 'Sunil',
-			age: 22,
-			isMinor: false
-		},
-		{
-			name: 'Nita',
-			age: 19,
-			isMinor: true
-		}
-	];
-	
-		var ractive = new Ractive({
-			target: '#target',
-			template: '#template',
-			//data: { greeting: 'Goodbye', name: 'Earth' },
-			data: {
-				peoples: people
-			}
+			var ractive = new Ractive({
+				target: '#target',
+				template: '#template',
+				//data: { greeting: 'Goodbye', name: 'Earth' },
+				data: {
+					peoples: people
+				}
 
-		});
-	</script>
+			});
+		</script>
 
 </body>
 
