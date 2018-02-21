@@ -1,0 +1,21 @@
+# Mac files
+.DS_store
+
+# Dependencies
+node_modules/**
+bower_components/**
+
+# Built files
+build/**
+dist/**
+
+# Logs
+npm-debug.log
+npm-debug.log.*
+
+# Editor Files
+.vs
+.vscode
+.idea
+**/tags
+
