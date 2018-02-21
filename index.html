@@ -1,23 +1,73 @@
 <!DOCTYPE html>
+<style>
+	html {
+		font-family: sans-serif;
+	}
+
+	th {
+		text-align: left;
+		background-color: #808080;
+		color: #FFFFFF;
+	}
+
+	td {
+		border-bottom: 1px dotted #D3D3D3;
+		text-align: left;
+	}
+
+	tr > * {
+		padding: 0.5em;
+	}
+</style>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+<head>
+</head>
+<body>
+	<h1>TrueCoders Beta Code</h1>
+	<p>Class Roster</p>
+	<div id="target"></div>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<div id="target"></div>
+	<div id="target"></div>
+	<script id="template" type="text/ractive">
+		<table width='20px'>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Is Minor?</th>
+			</tr>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+			{{#each classmates}}
+			<tr>
+				<td><div contentedittable="true"></div>{{name}}</div></td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+			</tr>
+			{{/each}}
+		</table>
+		<button type="button" class="btn btn-link">Edit</button>
+	</script>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script>
+		var ractive, people;
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
-</html>
+		people = [
+			{ name: 'Starla', age: '26', isMinor: 'False', },
+			{ name: 'Tori', age: '25', isMinor: 'False', },
+			{ name: 'Michael', age: '30', isMinor: 'False', },
+			{ name: 'Jack', age: '27', isMinor: 'False', },
+			{ name: 'Subash', age: '30', isMinor: 'False', },
+			{ name: 'Clay', age: '23', isMinor: 'False', },
+			{ name: 'Adrian', age: '28', isMinor: 'False', },
+			{ name: 'Daniel', age: '32', isMinor: 'False', },
+			{ name: 'Jessica', age: '17', isMinor: 'True', }
+		];
+
+		ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: { classmates: people }
+		});
+	</script>
+</body>
