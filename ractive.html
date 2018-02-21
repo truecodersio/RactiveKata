@@ -37,19 +37,29 @@
 			</tr>
 			{{/each}}
 		</table>
-		<h3>Add Employee</h3>
-		<form on-submit="addPeople()">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Add Name" value="{{newEmployeeName}}" required>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Add age" value="{{newEmployeeAge}}" required>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required>
-				<input class="btn btn-default" type="submit" on-click="Submit" value="Submit">
-			</div>
-		</form>
+		<div class="container text-center">
+			<h3>Add Employee</h3>
+			<form on-submit="addPeople()" class="form-inline text-center">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Add Name" value="{{newEmployeeName}}" required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Add age" value="{{newEmployeeAge}}" required>
+				</div>
+				<div class="form-group">
+					<!-- <input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required> -->
+					<div class="form-check form-check-inline">
+						<input type="checkbox" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}">
+						<label class="form-check-label" for="inlineCheckbox1">True</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input type="checkbox" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}">
+						<label class="form-check-label" for="inlineCheckbox1">False</label>
+					</div>
+					<input class="btn btn-danger" type="submit" on-click="Submit" value="Submit">
+				</div>
+			</form>
+		</div>
 	</script>
 
 
