@@ -8,23 +8,90 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
+
 	<title>Ractive Sandbox</title>
 
 </head>
 
 <body>
-	<div id="app"></div>
-
+	<div class="container">
+		<div id="app"></div>
+	</div>
 	<script type="text/ractive" id="template">
+		<h1>{{greeting}}</h1>
 
+		<h3 class="text-center">Employee    </h3>
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Isminor??</th>
+			</tr>
+			{{#each people:i}}
+			<tr>
+				<th>{{i}}</th>
+				<th>{{name}}</th>
+				<th>{{age}}</th>
+				<th>{{isMinor}}</th>
+			</tr>
+			{{/each}}
+		</table>
+		<h3>Add Employee</h3>
+		<form on-submit="addPeople()">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Add Name" value="{{newEmployeeName}}" required>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Add age" value="{{newEmployeeAge}}" required>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required>
+				<input class="btn btn-default" type="submit" on-click="Submit" value="Submit">
+			</div>
+		</form>
 	</script>
+
+
 	<script>
 		var ractive = new Ractive({
-      el: '#app',
-      template: '#template',
-      data: {
+			el: '#app',
+			template: '#template',
+			addPeople: function() {
+				var newEmployee = {
+					name: this.get('newEmployeeName'),
+					age: this.get('newEmployeeAge'),
+					isMinor: this.get('newEmployeeIsMinor')
+				};
+				ractive.push('people', newEmployee);
 
-      }
+				this.set('newEmployeeName', '');
+				this.set('newEmployeeAge', '');
+				this.set('newEmployeeIsMinor', '');
+
+				return false;
+			},
+			data: {
+				people: [{
+						name: 'Subash',
+						age: 29,
+						isMinor: false
+					},
+					{
+						name: 'Sunil',
+						age: 22,
+						isMinor: false
+					},
+					{
+						name: 'Nita',
+						age: 19,
+						isMinor: true
+					}
+				],
+				newEmployeeName: '',
+				newEmployeeAge: '',
+				newEmployeeIsMinor: ''
+			}
 		});
 	</script>
 
