@@ -1,56 +1,45 @@
 <!DOCTYPE html>
-<style>
-	html {
-		font-family: sans-serif;
-	}
-
-	th {
-		text-align: left;
-		background-color: #808080;
-		color: #FFFFFF;
-	}
-
-	td {
-		border-bottom: 1px dotted #D3D3D3;
-		text-align: left;
-	}
-
-	tr > * {
-		padding: 0.5em;
-	}
-</style>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <html>
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
+
 <body>
-	<h1>TrueCoders Beta Code</h1>
-	<p>Class Roster</p>
-	<div id="target"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>True Coders</h1>
+				<p>Beta Code</p>
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
+
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<div id="target"></div>
 	<script id="template" type="text/ractive">
-		<table width='20px'>
+
+		<table>
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
-				<th>Is Minor?</th>
+				<th>Under 18</th>
+				<th>Update</th>
 			</tr>
 
-			{{#each classmates}}
+			{{#each people}}
 			<tr>
-				<td><div contentedittable="true"></div>{{name}}</div></td>
+				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
 			</tr>
 			{{/each}}
 		</table>
-		<button type="button" class="btn btn-link">Edit</button>
 	</script>
-
 	<script>
-		var ractive, people;
+
+		var people;
 
 		people = [
 			{ name: 'Starla', age: '26', isMinor: 'False', },
@@ -64,10 +53,27 @@
 			{ name: 'Jessica', age: '17', isMinor: 'True', }
 		];
 
-		ractive = new Ractive({
+		var ractive = new Ractive({
 			target: '#target',
 			template: '#template',
-			data: { classmates: people }
+			data: {
+				person: {
+					firstName: '',
+					age: 0
+				},
+				people: people
+			},
+			edit: function (person, index) {
+				var name = prompt("Edit Name", person.name);
+				var age = prompt("Edit Age", person.age);
+				if (name && age) {
+					person.name = name;
+					person.age = age;
+				}
+
+				ractive.set('people[' + index + ']', person);
+			}
 		});
 	</script>
 </body>
+</html>
