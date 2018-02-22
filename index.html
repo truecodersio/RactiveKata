@@ -69,12 +69,14 @@
 			edit: function (person, index) {
 				var name = prompt("Edit Name", person.name);
 				var age = prompt("Edit Age", person.age);
-				var isMinor = prompt("Edit IsMinor", person.isMinor);
-				if (name && age && isMinor) {
+				if (name && age) {
 					person.name = name;
 					person.age = age;
-					person.isMinor = isMinor;
 				}
+				if (age < 18) {
+					person.isMinor = true;
+				} 
+
 				ractive.set('people[' + index + ']', person);
 			},
 		});
