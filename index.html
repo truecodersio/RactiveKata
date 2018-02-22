@@ -4,23 +4,60 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
 
-<div id="target"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>TrueCoders Class</h1>
+				<p>Feel free to edit if an age appears incorrect.</p>
 
-<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
 
-<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
 
-<script>
-	var ractive = new Ractive({
-		target: '#target',
-		template: '#template',
-		data: { greeting: 'Goodbye', name: 'Earth' }
-	});
-</script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+	<script id="template" type="text/ractive">
+
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Is Minor</th>
+			</tr>
+
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+			</tr>
+			{{/each}}
+		</table>
+
+	</script>
+
+	<script>
+		var people = [
+			{ name: "Tori", age: 25, isMinor: false },
+			{ name: "Starla", age: 26, isMinor: false },
+			{ name: "Michael", age: 30, isMinor: false },
+			{ name: "Jack", age: 27, isMinor: false },
+			{ name: "Daniel", age: 32, isMinor: false },
+			{ name: "Adrian", age: 28, isMinor: false },
+			{ name: "Subash", age: 45, isMinor: false },
+			{ name: "Clay", age: 23, isMinor: false },
+			{ name: "Hunter", age: 28, isMinor: false },
+			{ name: "Bay", age: 29, isMinor: false },
+		];
+
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: { people: people }
+		});
+	</script>
 </body>
 </html>
