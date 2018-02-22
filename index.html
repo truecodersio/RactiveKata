@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></head>
+
 <html>
 	<body>
-		<head></head>
+	
 		<h1>My First Heading</h1>
 		<p>My first paragraph.</p>
 
@@ -18,7 +19,14 @@
 			var ractive = new Ractive({
 				target: '#target',
 				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
+				data: { greeting: 'Goodbye', name: 'Earth' },
+				people: [
+					{ name: "Timmy", age: 12, isMinor: true },
+					{ name: "Tammy", age: 25, isMinor: false },
+					{ name: "Bobby", age: 90, isMinor: false },
+					{ name: "Lory", age: 29, isMinor: false },
+					{ name: "Philly", age: 1, isMinor: true }			
+			],
 			});
 		</script>
 	</body>
