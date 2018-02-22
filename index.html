@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col">
 				<h1>TrueCoders Class</h1>
-				<p>Feel free to edit if an age appears incorrect.</p>
+				<p>Feel free to edit if information appears incorrect.</p>
 
 				<div id="target"></div>
 			</div>
@@ -19,13 +19,14 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<script id="template" type="text/ractive">
+<script id="template" type="text/ractive">
 
 		<table class="table">
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
 				<th>Is Minor</th>
+				<th>Edit / Row</th>
 			</tr>
 
 			{{#each people}}
@@ -33,6 +34,7 @@
 				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a> </td>
 			</tr>
 			{{/each}}
 		</table>
