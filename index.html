@@ -1,32 +1,36 @@
+<style>
+	h1 {
+		padding-top: 40px;
+	}
+</style>
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 </head>
 <body>
 
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h1>TrueCoders Class</h1>
+				<h1 style="color:dodgerblue" ;>TrueCoders Class</h1>
 				<p>Feel free to edit if information appears incorrect.</p>
-
+				<br />
 				<div id="target"></div>
 			</div>
 		</div>
 	</div>
 
-
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
 	<script id="template" type="text/ractive">
-
 		<table class="table">
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
-				<th>IsMinor</th>
-				<th>Edit / Row</th>
+				<th>Minor</th>
+				<th>Edit</th>
 			</tr>
 
 			{{#each people}}
@@ -34,7 +38,7 @@
 				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{isMinor}}</td>
-				<td><a href="#" on-click="@.edit(this, @index)">Edit</a> </td>
+				<td><a href="#" on-click="@.edit(this, @index)"><i class="fa fa-pencil"></i></a> </td>
 			</tr>
 			{{/each}}
 		</table>
@@ -43,7 +47,6 @@
 
 	<script>
 		var people = [
-			{ name: "Tori", age: 25, isMinor: false },
 			{ name: "Starla", age: 26, isMinor: false },
 			{ name: "Michael", age: 30, isMinor: false },
 			{ name: "Jack", age: 27, isMinor: false },
@@ -62,7 +65,6 @@
 				person: {
 					firstName: '',
 					age: 0
-
 				},
 				people: people
 			},
@@ -75,7 +77,7 @@
 				}
 				if (age < 18) {
 					person.isMinor = true;
-				} 
+				}
 
 				ractive.set('people[' + index + ']', person);
 			},
