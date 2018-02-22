@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
-
-		<div id="target"></div>
-
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
-
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
-
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="target"></div>
+<script id="template" type="text/template">
+	<div class="container">
+		<h1 class="display-1 text-center"> {{msg}} </h1>
+		<div class="card text-center">
+			<button class="btn" on-click="@this.set('editing', !editing)">Edit My People</button>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Minor?</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#people}}
+				{{#if editing}}
+				<tr>
+					<td><input type="text" value="{{this.name}}"></td>
+					<td><input type="text" value="{{this.age}}"></td>
+					<td><input type="radio" checked="{{this.isMinor}}"></td>
+				</tr>
+				{{else}}
+				<tr>
+					<td>{{this.name}}</td>
+					<td>{{this.age}}</td>
+					<td>{{this.isMinor}}</td>
+				</tr>
+				{{/if}}
+				{{/people}}
+			</tbody>
+		</table>
+	</div>
+</script>
+<script src="./script.js"></script>
+</body>
 </html>
