@@ -27,14 +27,12 @@
 		<h3 class="text-center">Employee </h3>
 		<table class="table">
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
 				<th>Age</th>
 				<th>Isminor??</th>
 			</tr>
 			{{#each people:i}}
 			<tr>
-				<th>{{i}}</th>
 				<th>{{name}}</th>
 				<th>{{age}}</th>
 				<th>{{isMinor}}</th>
@@ -51,15 +49,7 @@
 					<input type="text" class="form-control" placeholder="Add age" value="{{newEmployeeAge}}" required>
 				</div>
 				<div class="form-group">
-					<!-- <input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required> -->
-					<div class="form-check form-check-inline">
-						<input type="checkbox" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}">
-						<label class="form-check-label" for="inlineCheckbox1">True</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input type="checkbox" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}">
-						<label class="form-check-label" for="inlineCheckbox1">False</label>
-					</div>
+					<input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required>
 					<input class="btn btn-danger" type="submit" on-click="Submit" value="Submit">
 				</div>
 			</form>
