@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<body>
+	<div id="target"></div>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<script id="template" type="text/template">
+		<h1>Fam Members Only</h1>
+		<p>Pointless stuff.</p>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>isMinor</th>
+				<th>Update</th>
+			</tr>
+			{{#each people}}
+			<tr>
+				<td>{{this.name}}</td>
+				<td>{{this.age}}</td>
+				<td>{{this.isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
+			</tr>
+			{{/each}}
+		</table>
+			
+	</script>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+	<script>
+		var people = [
+			{ name: 'Jack', age: '27', isMinor: false },
+			{ name: 'Ryan', age: '28', isMinor: false },
+			{ name: 'Colton', age: '24', isMinor: false },
+			{ name: 'Gunnar', age: '21', isMinor: false },
+		];
+
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: {
+				people: people
+			},
+			edit: function (person, index) {
+				var name = prompt("Edit Name", person.name);
+				var age = prompt("Edit Age", person.age);
+				if (name && age) {
+					person.name = name;
+					person.age = age;
+				}
+				if (age < 18) {
+					person.isMinor = true;
+				}
+
+				ractive.set('people[' + index + ']', person);
+			}
+		});
+	</script>
+</body>
+
 </html>
