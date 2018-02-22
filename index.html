@@ -1,23 +1,104 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
 
-		<div id="target"></div>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+	<title>Ractive Sandbox</title>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div id="app"></div>
+	</div>
+	<script type="text/ractive" id="template">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">WELCOME TO MY WORLD!</h1>
+				<p class="lead">It is Better To Fail In Originality</p>
+			</div>
+		</div>
+		<h3 class="text-center">Employee </h3>
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Isminor??</th>
+			</tr>
+			{{#each people:i}}
+			<tr>
+				<th>{{name}}</th>
+				<th>{{age}}</th>
+				<th>{{isMinor}}</th>
+			</tr>
+			{{/each}}
+		</table>
+		<div class="container text-center">
+			<h3>Add Employee</h3>
+			<form on-submit="addPeople()" class="form-inline text-center">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Add Name" value="{{newEmployeeName}}" required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Add age" value="{{newEmployeeAge}}" required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Add isMinor" value="{{newEmployeeIsMinor}}" required>
+					<input class="btn btn-danger" type="submit" on-click="Submit" value="Submit">
+				</div>
+			</form>
+		</div>
+	</script>
+
+	<script>
+		var ractive = new Ractive({
+			el: '#app',
+			template: '#template',
+			addPeople: function() {
+				var newEmployee = {
+					name: this.get('newEmployeeName'),
+					age: this.get('newEmployeeAge'),
+					isMinor: this.get('newEmployeeIsMinor')
+				};
+				ractive.push('people', newEmployee);
+
+				this.set('newEmployeeName', '');
+				this.set('newEmployeeAge', '');
+				this.set('newEmployeeIsMinor', '');
+
+				return false;
+			},
+			data: {
+				people: [{
+						name: 'Subash',
+						age: 29,
+						isMinor: false
+					},
+					{
+						name: 'Sunil',
+						age: 22,
+						isMinor: false
+					},
+					{
+						name: 'Nita',
+						age: 19,
+						isMinor: true
+					}
+				],
+				newEmployeeName: '',
+				newEmployeeAge: '',
+				newEmployeeIsMinor: ''
+			}
+		});
+	</script>
+
+
+</body>
+
 </html>
