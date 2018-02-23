@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <head>
+	<style>
+		#betacode {
+			font-family: 'Roboto', sans-serif;
+			border-collapse: collapse;
+			width: 500px;
+		}
+
+		#betacode td, #betacode th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+
+		#betacode tr:nth-child(even) {
+			background-color: #f2f2f2
+		}
+
+		#betacode th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #0000cd;
+			color: white;
+		}
+	</style>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 </head>
 
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1>True Coders</h1>
-				<p>Beta Code</p>
-				<div id="target"></div>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>True Coders</h1>
+			<p>Beta Code</p>
+			<div id="target"></div>
 		</div>
 	</div>
+</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 
-	<script id="template" type="text/ractive">
+<script id="template" type="text/ractive">
 
-		<table>
+		<table id="betacode">
 			<tr>
 				<th>Name</th>
 				<th>Age</th>
@@ -37,46 +63,46 @@
 			{{/each}}
 		</table>
 	</script>
-	<script>
+<script>
 
-		var people;
+	var people;
 
-		people = [
-			{ name: 'Starla', age: '26', isMinor: 'False', },
-			{ name: 'Tori', age: '25', isMinor: 'False', },
-			{ name: 'Michael', age: '30', isMinor: 'False', },
-			{ name: 'Jack', age: '27', isMinor: 'False', },
-			{ name: 'Subash', age: '30', isMinor: 'False', },
-			{ name: 'Clay', age: '23', isMinor: 'False', },
-			{ name: 'Adrian', age: '28', isMinor: 'False', },
-			{ name: 'Daniel', age: '32', isMinor: 'False', },
-			{ name: 'Jessica', age: '17', isMinor: 'True', }
-		];
+	people = [
+		{ name: 'Starla', age: '26', isMinor: 'False', },
+		{ name: 'Tori', age: '25', isMinor: 'False', },
+		{ name: 'Michael', age: '30', isMinor: 'False', },
+		{ name: 'Jack', age: '27', isMinor: 'False', },
+		{ name: 'Subash', age: '30', isMinor: 'False', },
+		{ name: 'Clay', age: '23', isMinor: 'False', },
+		{ name: 'Adrian', age: '28', isMinor: 'False', },
+		{ name: 'Daniel', age: '32', isMinor: 'False', },
+		{ name: 'Jessica', age: '17', isMinor: 'True', }
+	];
 
-		var ractive = new Ractive({
-			target: '#target',
-			template: '#template',
-			data: {
-				person: {
-					firstName: '',
-					age: 0
-				},
-				people: people
+	var ractive = new Ractive({
+		target: '#target',
+		template: '#template',
+		data: {
+			person: {
+				firstName: '',
+				age: 0
 			},
-			edit: function (person, index) {
-				var name = prompt("Edit Name", person.name);
-				var age = prompt("Edit Age", person.age);
-				if (name && age) {
-					person.name = name;
-					person.age = age;
-				}
-				if (age < 18) {
-					person.isMinor = true;
-				}
-
-				ractive.set('people[' + index + ']', person);
+			people: people
+		},
+		edit: function(person, index) {
+			var name = prompt("Edit Name", person.name);
+			var age = prompt("Edit Age", person.age);
+			if (name && age) {
+				person.name = name;
+				person.age = age;
 			}
-		});
-	</script>
+			if (age < 18) {
+				person.isMinor = true;
+			}
+
+			ractive.set('people[' + index + ']', person);
+		}
+	});
+</script>
 </body>
 </html>
