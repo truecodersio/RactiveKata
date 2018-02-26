@@ -1,23 +1,78 @@
 <!DOCTYPE html>
+
+<style>
+	h1 {
+		padding-top: 5px;
+	}
+    table {
+        background : yellowgreen;
+        color: blueviolet;
+    }
+</style>
+
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
-
-		<div id="target"></div>
-
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
-
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
-
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1 style="color:rgb(165, 38, 190)" ;>Hello!</h1>
+				<p>Here is a table (you can also make some edits...):</p>
+				<div id="target"></div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+	<script id="template" type="text/ractive">
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Edit</th>
+			</tr>
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{gender}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)"><i class="fa fa-pencil"></i></a> </td>
+			</tr>
+			{{/each}}
+		</table>
+	</script>
+	<script>
+		var people = [
+      { name: 'Daniel', age: '32',  gender: 'Male', },
+      { name: 'Subash', age: '30',  gender: 'Male', },
+      { name: 'Starla', age: '26',  gender: 'Female', },
+      { name: 'Tori', age: '25',  gender: 'Female', },
+      { name: 'Jack', age: '27',  gender: 'Male', },
+      { name: 'Michael', age: '30',  gender: 'Male', },
+      { name: 'Clay', age: '23',  gender: 'Male', },
+      { name: 'Adrian', age: '28',  gender: 'Male', },
+    ];
+		var ractive = new Ractive({
+			target: '#target',
+			template: '#template',
+			data: {
+				person: {
+					name: '', age: 0
+				},
+				people: people
+			},
+			edit: function (person, index) {
+				var name = prompt("Change a person's name", person.name);
+				var age = prompt("Edit Age", person.age);
+				if (name && age) {
+					person.name = name;
+					person.age = age;
+				}
+				ractive.set('people[' + index + ']', person);
+			}
+		});
+	</script>
+</body>
 </html>
