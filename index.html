@@ -68,15 +68,15 @@
 	var people;
 
 	people = [
-		{ name: 'Starla', age: '26', isMinor: 'False', },
-		{ name: 'Tori', age: '25', isMinor: 'False', },
-		{ name: 'Michael', age: '30', isMinor: 'False', },
-		{ name: 'Jack', age: '27', isMinor: 'False', },
-		{ name: 'Subash', age: '30', isMinor: 'False', },
-		{ name: 'Clay', age: '23', isMinor: 'False', },
-		{ name: 'Adrian', age: '28', isMinor: 'False', },
-		{ name: 'Daniel', age: '32', isMinor: 'False', },
-		{ name: 'Jessica', age: '17', isMinor: 'True', }
+		{ name: 'Starla', age: 26, isMinor: false, },
+		{ name: 'Tori', age: 25, isMinor: false, },
+		{ name: 'Michael', age: 30, isMinor: false, },
+		{ name: 'Jack', age: 27, isMinor: false, },
+		{ name: 'Subash', age: 30, isMinor: false, },
+		{ name: 'Clay', age: 23, isMinor: false, },
+		{ name: 'Adrian', age: 28, isMinor: false, },
+		{ name: 'Daniel', age: 32, isMinor: false, },
+		{ name: 'Jessica', age: 17, isMinor: false, }
 	];
 
 	var ractive = new Ractive({
@@ -96,9 +96,8 @@
 				person.name = name;
 				person.age = age;
 			}
-			if (age < 18) {
-				person.isMinor = true;
-			}
+
+			person.isMinor = age < 18;
 
 			ractive.set('people[' + index + ']', person);
 		}
