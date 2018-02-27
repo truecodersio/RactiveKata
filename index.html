@@ -12,20 +12,17 @@
 
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1 style="color:rgb(165, 38, 190)" ;>Hello!</h1>
-				<p>Here is a table (you can also make some edits...):</p>
-				<div id="target"></div>
-			</div>
-		</div>
+		<h1 style="color:rgb(165, 38, 190)" ;>Hello!</h1>
+		<p>Here is a table (you can also make some edits...):</p>
+		<div id="target"></div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
-	<script id="template" type="text/ractive">
+	<script id="template" type="text/template">
 		<table class="table">
 			<tr>
 				<th>Name</th>
@@ -38,7 +35,7 @@
 				<td>{{name}}</td>
 				<td>{{age}}</td>
 				<td>{{gender}}</td>
-				<td><a href="#" on-click="@.edit(this, @index)"><i class="fa fa-pencil"></i></a> </td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit<i class="fa fa-pencil"></i></a> </td>
 			</tr>
 			{{/each}}
 		</table>
@@ -65,7 +62,7 @@
 			},
 			edit: function (person, index) {
 				var name = prompt("Change a person's name", person.name);
-				var age = prompt("Edit Age", person.age);
+				var age = prompt("Change a person's Age", person.age);
 				if (name && age) {
 					person.name = name;
 					person.age = age;
