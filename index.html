@@ -1,23 +1,107 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<head>
+	<style>
+		#betacode {
+			font-family: 'Roboto', sans-serif;
+			border-collapse: collapse;
+			width: 500px;
+		}
 
-		<div id="target"></div>
+		#betacode td, #betacode th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
 
-		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+		#betacode tr:nth-child(even) {
+			background-color: #f2f2f2
+		}
 
-		<script id="template" type="text/ractive">
-			<p>{{greeting}}, {{name}}!</p>
-		</script>
+		#betacode th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #0000cd;
+			color: white;
+		}
+	</style>
 
-		<script>
-			var ractive = new Ractive({
-				target: '#target',
-				template: '#template',
-				data: { greeting: 'Goodbye', name: 'Earth' }
-			});
-		</script>
-	</body>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>True Coders</h1>
+			<p>Beta Code</p>
+			<div id="target"></div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
+<script id="template" type="text/ractive">
+
+		<table id="betacode">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Under 18</th>
+				<th>Update</th>
+			</tr>
+
+			{{#each people}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{isMinor}}</td>
+				<td><a href="#" on-click="@.edit(this, @index)">Edit</a></td>
+			</tr>
+			{{/each}}
+		</table>
+	</script>
+<script>
+
+	var people;
+
+	people = [
+		{ name: 'Starla', age: 26, isMinor: false, },
+		{ name: 'Tori', age: 25, isMinor: false, },
+		{ name: 'Michael', age: 30, isMinor: false, },
+		{ name: 'Jack', age: 27, isMinor: false, },
+		{ name: 'Subash', age: 30, isMinor: false, },
+		{ name: 'Clay', age: 23, isMinor: false, },
+		{ name: 'Adrian', age: 28, isMinor: false, },
+		{ name: 'Daniel', age: 32, isMinor: false, },
+		{ name: 'Jessica', age: 17, isMinor: false, }
+	];
+
+	var ractive = new Ractive({
+		target: '#target',
+		template: '#template',
+		data: {
+			person: {
+				firstName: '',
+				age: 0
+			},
+			people: people
+		},
+		edit: function(person, index) {
+			var name = prompt("Edit Name", person.name);
+			var age = prompt("Edit Age", person.age);
+			if (name && age) {
+				person.name = name;
+				person.age = age;
+			}
+
+			person.isMinor = age < 18;
+
+			ractive.set('people[' + index + ']', person);
+		}
+	});
+</script>
+</body>
 </html>
